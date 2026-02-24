@@ -604,6 +604,453 @@
 
     .signup-success p { color: var(--green); font-weight: 600; font-size: 1.1rem; }
 
+    /* ===== CONTEST ===== */
+    .contest-banner {
+      background: linear-gradient(135deg, var(--green) 0%, #1b5e20 100%);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      color: #fff;
+      text-align: center;
+    }
+
+    .contest-badge {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      background: rgba(255,255,255,0.2);
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 0.8rem;
+    }
+
+    .contest-badge.ended {
+      background: rgba(229,57,53,0.3);
+    }
+
+    .contest-theme {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .contest-description {
+      font-size: 0.95rem;
+      opacity: 0.9;
+      max-width: 500px;
+      margin: 0 auto 1.2rem;
+    }
+
+    .contest-timer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .timer-block {
+      background: rgba(255,255,255,0.15);
+      border-radius: 8px;
+      padding: 0.5rem 0.8rem;
+      min-width: 56px;
+      text-align: center;
+    }
+
+    .timer-num {
+      display: block;
+      font-size: 1.4rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .timer-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      opacity: 0.8;
+    }
+
+    .timer-sep {
+      font-size: 1.4rem;
+      font-weight: 700;
+      opacity: 0.6;
+    }
+
+    .contest-subtitle {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--green);
+      margin-bottom: 0.4rem;
+    }
+
+    .contest-hint {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    /* Contest Photo Picker (for submitting entries) */
+    .contest-submit-area {
+      background: #fff;
+      border-radius: 10px;
+      padding: 1.5rem;
+      border: 1px solid #eee;
+      margin-bottom: 2rem;
+    }
+
+    .contest-photo-picker {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 0.8rem;
+    }
+
+    .picker-card {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .picker-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--green-light);
+    }
+
+    .picker-card.entered {
+      border-color: var(--green);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .picker-card.entered::after {
+      content: 'Entered';
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      background: var(--green);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+    }
+
+    .picker-card img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .picker-card .picker-title {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.4rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #333;
+      background: #fff;
+    }
+
+    /* Contest Picks (ranked choice) */
+    .contest-picks {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .pick-slot {
+      flex: 1;
+      min-width: 160px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1rem;
+      border: 2px dashed #d0d0d0;
+      border-radius: 10px;
+      background: #fafafa;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .pick-slot.filled {
+      border-style: solid;
+      border-color: var(--green-light);
+      background: var(--green-pale);
+    }
+
+    .pick-slot[data-rank="1"].filled { border-color: #ffd700; background: #fffde7; }
+    .pick-slot[data-rank="2"].filled { border-color: #b0bec5; background: #f5f5f5; }
+    .pick-slot[data-rank="3"].filled { border-color: #cd7f32; background: #fff8e1; }
+
+    .pick-rank {
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--green);
+      min-width: 28px;
+    }
+
+    .pick-slot[data-rank="1"] .pick-rank { color: #f9a825; }
+    .pick-slot[data-rank="2"] .pick-rank { color: #78909c; }
+    .pick-slot[data-rank="3"] .pick-rank { color: #cd7f32; }
+
+    .pick-label {
+      flex: 1;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .pick-slot.filled .pick-label { color: var(--text-dark); font-weight: 500; }
+
+    .pick-clear {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      padding: 0;
+      line-height: 1;
+    }
+
+    .pick-clear:hover { color: var(--danger); }
+
+    /* Contest Entries Grid */
+    .contest-entries-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+
+    .contest-entry-card {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid #eee;
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .contest-entry-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    }
+
+    .contest-entry-card.selected-1 { border-color: #ffd700; box-shadow: 0 0 0 2px rgba(255,215,0,0.3); }
+    .contest-entry-card.selected-2 { border-color: #b0bec5; box-shadow: 0 0 0 2px rgba(176,190,197,0.3); }
+    .contest-entry-card.selected-3 { border-color: #cd7f32; box-shadow: 0 0 0 2px rgba(205,127,50,0.3); }
+
+    .contest-entry-card .entry-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .contest-entry-card .entry-body {
+      padding: 0.8rem;
+    }
+
+    .contest-entry-card .entry-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #111;
+      margin-bottom: 0.2rem;
+    }
+
+    .contest-entry-card .entry-photographer {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .contest-entry-card .entry-rank-badge {
+      display: none;
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #fff;
+      text-align: center;
+      line-height: 28px;
+    }
+
+    .contest-entry-card { position: relative; }
+
+    .contest-entry-card.selected-1 .entry-rank-badge { display: block; background: #ffd700; color: #333; }
+    .contest-entry-card.selected-2 .entry-rank-badge { display: block; background: #b0bec5; color: #333; }
+    .contest-entry-card.selected-3 .entry-rank-badge { display: block; background: #cd7f32; color: #fff; }
+
+    .contest-vote-btn {
+      max-width: 300px;
+    }
+
+    .contest-vote-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .contest-vote-success {
+      display: none;
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    .contest-vote-success .checkmark {
+      font-size: 2.5rem;
+      display: block;
+      margin-bottom: 0.3rem;
+      color: var(--green);
+    }
+
+    .contest-vote-success p {
+      color: var(--green);
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    /* Contest Results / Podium */
+    .contest-podium {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .podium-item {
+      text-align: center;
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid #eee;
+      overflow: hidden;
+      width: 220px;
+      transition: transform 0.2s;
+    }
+
+    .podium-item:hover { transform: translateY(-3px); }
+
+    .podium-item.gold { order: 0; border-color: #ffd700; }
+    .podium-item.silver { order: -1; }
+    .podium-item.bronze { order: 1; }
+
+    .podium-place {
+      padding: 0.5rem;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .podium-item.gold .podium-place { background: #ffd700; color: #333; }
+    .podium-item.silver .podium-place { background: #e0e0e0; color: #555; }
+    .podium-item.bronze .podium-place { background: #cd7f32; color: #fff; }
+
+    .podium-item img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .podium-info {
+      padding: 0.8rem;
+    }
+
+    .podium-info .podium-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #111;
+      margin-bottom: 0.2rem;
+    }
+
+    .podium-info .podium-photographer {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .podium-info .podium-points {
+      font-size: 0.8rem;
+      color: var(--green);
+      font-weight: 600;
+    }
+
+    /* Past Winners */
+    .contest-past {
+      margin-top: 2.5rem;
+    }
+
+    .contest-past-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .past-winner-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid #eee;
+      padding: 1rem;
+      transition: box-shadow 0.2s;
+    }
+
+    .past-winner-card:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+
+    .past-winner-card img {
+      width: 80px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .past-winner-info {
+      flex: 1;
+    }
+
+    .past-winner-info .past-theme {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--green);
+      margin-bottom: 0.1rem;
+    }
+
+    .past-winner-info .past-winner-name {
+      font-size: 0.85rem;
+      color: #111;
+    }
+
+    .past-winner-info .past-winner-meta {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .past-winner-trophy {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    /* Responsive for contest */
+    @media (max-width: 768px) {
+      .contest-picks { flex-direction: column; }
+      .contest-podium { flex-direction: column; align-items: center; }
+      .podium-item { order: unset !important; }
+      .past-winner-card { flex-direction: column; text-align: center; }
+    }
+
     /* ===== PROFILE MODAL ===== */
     .modal-overlay {
       display: none;
@@ -782,6 +1229,7 @@
       <button class="active" data-section="gallery">Gallery</button>
       <button data-section="upload">Upload</button>
       <button data-section="photographers">Photographers</button>
+      <button data-section="contest">Contest</button>
       <button data-section="signup">Sign Up</button>
     </nav>
   </div>
@@ -853,6 +1301,77 @@
   <section id="section-photographers" class="section">
     <h2 class="section-title">Meet the Photographers</h2>
     <div class="photographer-grid" id="photographer-grid"></div>
+  </section>
+
+  <!-- ============ CONTEST SECTION ============ -->
+  <section id="section-contest" class="section">
+    <h2 class="section-title">Photo Contest</h2>
+
+    <!-- Current Contest Banner -->
+    <div class="contest-banner" id="contest-banner">
+      <div class="contest-banner-content">
+        <div class="contest-badge" id="contest-badge">VOTING OPEN</div>
+        <h3 class="contest-theme" id="contest-theme">Best Bird Photography</h3>
+        <p class="contest-description" id="contest-description">Submit your best bird photos and vote for your favorites. Top 3 ranked by community vote win!</p>
+        <div class="contest-timer" id="contest-timer">
+          <div class="timer-block"><span class="timer-num" id="timer-days">0</span><span class="timer-label">Days</span></div>
+          <div class="timer-sep">:</div>
+          <div class="timer-block"><span class="timer-num" id="timer-hours">0</span><span class="timer-label">Hours</span></div>
+          <div class="timer-sep">:</div>
+          <div class="timer-block"><span class="timer-num" id="timer-minutes">0</span><span class="timer-label">Min</span></div>
+          <div class="timer-sep">:</div>
+          <div class="timer-block"><span class="timer-num" id="timer-seconds">0</span><span class="timer-label">Sec</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit Photo to Contest -->
+    <div class="contest-submit-area" id="contest-submit-area">
+      <h3 class="contest-subtitle">Enter a Photo</h3>
+      <p class="contest-hint">Select one of your gallery photos to enter into this contest.</p>
+      <div class="contest-photo-picker" id="contest-photo-picker"></div>
+    </div>
+
+    <!-- Contest Entries & Voting -->
+    <div class="contest-voting-area" id="contest-voting-area">
+      <h3 class="contest-subtitle">Vote for Your Favorites</h3>
+      <p class="contest-hint">Pick your 1st, 2nd, and 3rd place choices. You can change your picks before the contest ends.</p>
+      <div class="contest-picks" id="contest-picks">
+        <div class="pick-slot" data-rank="1">
+          <span class="pick-rank">1st</span>
+          <span class="pick-label" id="pick-label-1">Click a photo below</span>
+          <button class="pick-clear" data-rank="1" style="display:none;">&times;</button>
+        </div>
+        <div class="pick-slot" data-rank="2">
+          <span class="pick-rank">2nd</span>
+          <span class="pick-label" id="pick-label-2">Click a photo below</span>
+          <button class="pick-clear" data-rank="2" style="display:none;">&times;</button>
+        </div>
+        <div class="pick-slot" data-rank="3">
+          <span class="pick-rank">3rd</span>
+          <span class="pick-label" id="pick-label-3">Click a photo below</span>
+          <button class="pick-clear" data-rank="3" style="display:none;">&times;</button>
+        </div>
+      </div>
+      <button class="submit-btn contest-vote-btn" id="contest-vote-btn" disabled>Submit Vote</button>
+      <div class="contest-vote-success" id="contest-vote-success">
+        <span class="checkmark">&#10004;</span>
+        <p>Your vote has been recorded! Results will be revealed when the contest ends.</p>
+      </div>
+      <div class="contest-entries-grid" id="contest-entries-grid"></div>
+    </div>
+
+    <!-- Results (hidden until contest ends) -->
+    <div class="contest-results" id="contest-results" style="display:none;">
+      <h3 class="contest-subtitle">Contest Results</h3>
+      <div class="contest-podium" id="contest-podium"></div>
+    </div>
+
+    <!-- Past Winners -->
+    <div class="contest-past" id="contest-past">
+      <h3 class="contest-subtitle">Past Winners</h3>
+      <div class="contest-past-list" id="contest-past-list"></div>
+    </div>
   </section>
 
   <!-- ============ SIGN UP SECTION ============ -->
@@ -1567,6 +2086,393 @@ document.getElementById('signup-form').addEventListener('submit', (e) => {
 });
 
 // ============================================================
+// CONTEST
+// ============================================================
+const PAST_CONTESTS = [
+  {
+    id: 'past-1',
+    theme: 'Best Marine Life Shot',
+    description: 'Celebrating the beauty beneath the waves.',
+    endDate: '2026-01-15T00:00:00',
+    winnerId: 3, // Humpback Whale Breach
+    winnerName: 'Humpback Whale Breach',
+    winnerPhotographer: 'Yuki Tanaka',
+    winnerImg: 'https://images.unsplash.com/photo-1518877593221-1f28583780b4?w=600&h=400&fit=crop',
+    entries: [3, 6, 14, 21],
+    results: [
+      { photoId: 3, points: 18 },
+      { photoId: 6, points: 14 },
+      { photoId: 21, points: 9 },
+      { photoId: 14, points: 7 }
+    ]
+  },
+  {
+    id: 'past-2',
+    theme: 'Mammal Majesty',
+    description: 'Powerful portraits of the world\'s mammals.',
+    endDate: '2026-02-01T00:00:00',
+    winnerId: 11, // Bengal Tiger at Waterhole
+    winnerName: 'Bengal Tiger at Waterhole',
+    winnerPhotographer: 'Anika Patel',
+    winnerImg: 'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=600&h=400&fit=crop',
+    entries: [2, 5, 7, 11, 13, 15, 22],
+    results: [
+      { photoId: 11, points: 24 },
+      { photoId: 7, points: 19 },
+      { photoId: 22, points: 15 },
+      { photoId: 2, points: 12 },
+      { photoId: 5, points: 10 },
+      { photoId: 13, points: 8 },
+      { photoId: 15, points: 5 }
+    ]
+  }
+];
+
+// Current active contest - ends 3 days from now
+const now = new Date();
+const contestEnd = new Date(now.getTime() + 3 * 24 * 60 * 60 * 1000);
+
+const CURRENT_CONTEST = {
+  id: 'current-1',
+  theme: 'Best Bird Photography',
+  description: 'Submit your best bird photos and vote for your favorites. Top 3 ranked by community vote win!',
+  endDate: contestEnd.toISOString(),
+  entries: [1, 4, 10, 12, 17, 20, 23] // Photo IDs entered in the contest
+};
+
+// Contest state from localStorage
+let contestEntries = JSON.parse(localStorage.getItem('wl_contest_entries') || 'null') || [...CURRENT_CONTEST.entries];
+let contestVotes = JSON.parse(localStorage.getItem('wl_contest_votes') || 'null'); // { rank1: photoId, rank2: photoId, rank3: photoId }
+let contestVoteSubmitted = JSON.parse(localStorage.getItem('wl_contest_vote_submitted') || 'false');
+let currentPicks = { 1: null, 2: null, 3: null }; // Temporary picks before submit
+let nextPickRank = 1; // Which rank to assign next
+
+// Save contest entries to localStorage
+function saveContestEntries() {
+  localStorage.setItem('wl_contest_entries', JSON.stringify(contestEntries));
+}
+
+// Check if contest has ended
+function isContestEnded() {
+  return new Date() >= new Date(CURRENT_CONTEST.endDate);
+}
+
+// Countdown timer
+let countdownInterval = null;
+
+function updateCountdown() {
+  const end = new Date(CURRENT_CONTEST.endDate);
+  const diff = end - new Date();
+
+  if (diff <= 0) {
+    document.getElementById('timer-days').textContent = '0';
+    document.getElementById('timer-hours').textContent = '0';
+    document.getElementById('timer-minutes').textContent = '0';
+    document.getElementById('timer-seconds').textContent = '0';
+    document.getElementById('contest-badge').textContent = 'CONTEST ENDED';
+    document.getElementById('contest-badge').classList.add('ended');
+    if (countdownInterval) clearInterval(countdownInterval);
+    showContestResults();
+    return;
+  }
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+  document.getElementById('timer-days').textContent = days;
+  document.getElementById('timer-hours').textContent = hours;
+  document.getElementById('timer-minutes').textContent = minutes;
+  document.getElementById('timer-seconds').textContent = seconds;
+}
+
+function startCountdown() {
+  updateCountdown();
+  countdownInterval = setInterval(updateCountdown, 1000);
+}
+
+// Render the photo picker for submitting entries
+function renderContestPhotoPicker() {
+  const picker = document.getElementById('contest-photo-picker');
+  picker.innerHTML = '';
+
+  // Show all gallery photos; mark ones already entered
+  photos.forEach(photo => {
+    const isEntered = contestEntries.includes(photo.id);
+    const card = document.createElement('div');
+    card.className = 'picker-card' + (isEntered ? ' entered' : '');
+    card.innerHTML = `
+      <img src="${photo.img}" alt="${photo.title}" loading="lazy">
+      <div class="picker-title">${photo.title}</div>
+    `;
+
+    if (!isEntered && !isContestEnded()) {
+      card.addEventListener('click', () => {
+        contestEntries.push(photo.id);
+        saveContestEntries();
+        renderContestPhotoPicker();
+        renderContestEntries();
+      });
+    }
+
+    picker.appendChild(card);
+  });
+}
+
+// Render contest entries for voting
+function renderContestEntries() {
+  const grid = document.getElementById('contest-entries-grid');
+  grid.innerHTML = '';
+
+  contestEntries.forEach(photoId => {
+    const photo = photos.find(p => p.id === photoId);
+    if (!photo) return;
+    const photographer = PHOTOGRAPHERS.find(p => p.id === photo.photographer);
+
+    const card = document.createElement('div');
+    card.className = 'contest-entry-card';
+
+    // Check if this photo is selected in picks
+    let selectedRank = 0;
+    for (const [rank, id] of Object.entries(currentPicks)) {
+      if (id === photoId) selectedRank = Number(rank);
+    }
+    if (selectedRank) card.classList.add('selected-' + selectedRank);
+
+    card.innerHTML = `
+      <div class="entry-rank-badge">${selectedRank === 1 ? '1st' : selectedRank === 2 ? '2nd' : '3rd'}</div>
+      <img class="entry-img" src="${photo.img}" alt="${photo.title}" loading="lazy">
+      <div class="entry-body">
+        <div class="entry-title">${photo.title}</div>
+        <div class="entry-photographer">by ${photographer ? photographer.name : 'Unknown'}</div>
+      </div>
+    `;
+
+    if (!isContestEnded() && !contestVoteSubmitted) {
+      card.addEventListener('click', () => {
+        selectContestPick(photoId, photo.title);
+      });
+    }
+
+    grid.appendChild(card);
+  });
+}
+
+// Handle picking a photo for ranked choice
+function selectContestPick(photoId, title) {
+  // If already picked in some rank, remove it first
+  for (const rank of [1, 2, 3]) {
+    if (currentPicks[rank] === photoId) {
+      currentPicks[rank] = null;
+      updatePickSlot(rank, null);
+    }
+  }
+
+  // Find the next empty rank to fill
+  let targetRank = null;
+  for (const rank of [1, 2, 3]) {
+    if (currentPicks[rank] === null) {
+      targetRank = rank;
+      break;
+    }
+  }
+
+  if (targetRank === null) {
+    // All slots full - replace 3rd place
+    targetRank = 3;
+  }
+
+  currentPicks[targetRank] = photoId;
+  updatePickSlot(targetRank, title);
+  renderContestEntries();
+  updateVoteButton();
+}
+
+function updatePickSlot(rank, title) {
+  const slot = document.querySelector(`.pick-slot[data-rank="${rank}"]`);
+  const label = document.getElementById('pick-label-' + rank);
+  const clearBtn = slot.querySelector('.pick-clear');
+
+  if (title) {
+    slot.classList.add('filled');
+    label.textContent = title;
+    clearBtn.style.display = 'inline';
+  } else {
+    slot.classList.remove('filled');
+    label.textContent = 'Click a photo below';
+    clearBtn.style.display = 'none';
+  }
+}
+
+function updateVoteButton() {
+  const btn = document.getElementById('contest-vote-btn');
+  const allFilled = currentPicks[1] !== null && currentPicks[2] !== null && currentPicks[3] !== null;
+  btn.disabled = !allFilled;
+}
+
+// Clear pick handlers
+document.querySelectorAll('.pick-clear').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const rank = Number(btn.dataset.rank);
+    currentPicks[rank] = null;
+    updatePickSlot(rank, null);
+    renderContestEntries();
+    updateVoteButton();
+  });
+});
+
+// Submit vote
+document.getElementById('contest-vote-btn').addEventListener('click', () => {
+  if (currentPicks[1] === null || currentPicks[2] === null || currentPicks[3] === null) return;
+
+  contestVotes = {
+    rank1: currentPicks[1],
+    rank2: currentPicks[2],
+    rank3: currentPicks[3]
+  };
+  contestVoteSubmitted = true;
+  localStorage.setItem('wl_contest_votes', JSON.stringify(contestVotes));
+  localStorage.setItem('wl_contest_vote_submitted', 'true');
+
+  // Show success message
+  document.getElementById('contest-vote-btn').style.display = 'none';
+  document.getElementById('contest-vote-success').style.display = 'block';
+
+  setTimeout(() => {
+    document.getElementById('contest-vote-success').style.display = 'none';
+    renderContestSection();
+  }, 2500);
+});
+
+// Show results when contest ends
+function showContestResults() {
+  const ended = isContestEnded();
+  if (!ended) return;
+
+  // Hide voting area submit button
+  document.getElementById('contest-submit-area').style.display = 'none';
+  document.getElementById('contest-vote-btn').style.display = 'none';
+  document.querySelector('.contest-voting-area .contest-hint').textContent = 'The contest has ended. Here are the entries:';
+
+  // Remove click-to-vote behavior by re-rendering
+  renderContestEntries();
+
+  // Generate mock results from all entries (simulated community votes)
+  const entryPoints = {};
+  contestEntries.forEach(id => { entryPoints[id] = Math.floor(Math.random() * 15) + 3; });
+
+  // If user voted, give their picks a boost
+  if (contestVotes) {
+    entryPoints[contestVotes.rank1] = (entryPoints[contestVotes.rank1] || 0) + 3;
+    entryPoints[contestVotes.rank2] = (entryPoints[contestVotes.rank2] || 0) + 2;
+    entryPoints[contestVotes.rank3] = (entryPoints[contestVotes.rank3] || 0) + 1;
+  }
+
+  const sorted = Object.entries(entryPoints).sort((a, b) => b[1] - a[1]);
+  const podiumEl = document.getElementById('contest-podium');
+  podiumEl.innerHTML = '';
+
+  const medals = ['gold', 'silver', 'bronze'];
+  const placeLabels = ['1st Place', '2nd Place', '3rd Place'];
+
+  for (let i = 0; i < Math.min(3, sorted.length); i++) {
+    const photoId = Number(sorted[i][0]);
+    const points = sorted[i][1];
+    const photo = photos.find(p => p.id === photoId);
+    if (!photo) continue;
+    const photographer = PHOTOGRAPHERS.find(p => p.id === photo.photographer);
+
+    const item = document.createElement('div');
+    item.className = 'podium-item ' + medals[i];
+    item.innerHTML = `
+      <div class="podium-place">${placeLabels[i]}</div>
+      <img src="${photo.img}" alt="${photo.title}" loading="lazy">
+      <div class="podium-info">
+        <div class="podium-title">${photo.title}</div>
+        <div class="podium-photographer">by ${photographer ? photographer.name : 'Unknown'}</div>
+        <div class="podium-points">${points} points</div>
+      </div>
+    `;
+    podiumEl.appendChild(item);
+  }
+
+  document.getElementById('contest-results').style.display = 'block';
+}
+
+// Render past winners
+function renderPastWinners() {
+  const list = document.getElementById('contest-past-list');
+  list.innerHTML = '';
+
+  if (PAST_CONTESTS.length === 0) {
+    list.innerHTML = '<p style="color:var(--text-muted);font-size:0.9rem;">No past contests yet.</p>';
+    return;
+  }
+
+  PAST_CONTESTS.forEach(contest => {
+    const card = document.createElement('div');
+    card.className = 'past-winner-card';
+    card.innerHTML = `
+      <span class="past-winner-trophy">&#127942;</span>
+      <img src="${contest.winnerImg}" alt="${contest.winnerName}" loading="lazy">
+      <div class="past-winner-info">
+        <div class="past-theme">${contest.theme}</div>
+        <div class="past-winner-name">Winner: ${contest.winnerName}</div>
+        <div class="past-winner-meta">by ${contest.winnerPhotographer} &middot; Ended ${new Date(contest.endDate).toLocaleDateString()}</div>
+      </div>
+    `;
+    list.appendChild(card);
+  });
+}
+
+// Restore vote state if already submitted
+function restoreVoteState() {
+  if (contestVoteSubmitted && contestVotes) {
+    for (const [key, photoId] of Object.entries(contestVotes)) {
+      const rank = key === 'rank1' ? 1 : key === 'rank2' ? 2 : 3;
+      const photo = photos.find(p => p.id === photoId);
+      if (photo) {
+        currentPicks[rank] = photoId;
+        updatePickSlot(rank, photo.title);
+      }
+    }
+  }
+}
+
+// Main contest render
+function renderContestSection() {
+  const ended = isContestEnded();
+
+  document.getElementById('contest-theme').textContent = CURRENT_CONTEST.theme;
+  document.getElementById('contest-description').textContent = CURRENT_CONTEST.description;
+
+  if (ended) {
+    document.getElementById('contest-badge').textContent = 'CONTEST ENDED';
+    document.getElementById('contest-badge').classList.add('ended');
+    document.getElementById('contest-submit-area').style.display = 'none';
+    document.getElementById('contest-vote-btn').style.display = 'none';
+  } else {
+    document.getElementById('contest-badge').textContent = 'VOTING OPEN';
+    document.getElementById('contest-badge').classList.remove('ended');
+  }
+
+  if (contestVoteSubmitted && !ended) {
+    document.getElementById('contest-vote-btn').style.display = 'none';
+    document.querySelector('.contest-voting-area .contest-hint').textContent = 'Your vote has been recorded. Results will be revealed when the contest ends.';
+  }
+
+  renderContestPhotoPicker();
+  renderContestEntries();
+  renderPastWinners();
+  restoreVoteState();
+  startCountdown();
+
+  if (ended) showContestResults();
+}
+
+// ============================================================
 // STATS
 // ============================================================
 function updateStats() {
@@ -1583,6 +2489,7 @@ renderGallery();
 renderPhotographers();
 populateUploadForm();
 updateStats();
+renderContestSection();
 </script>
 </body>
 </html>
