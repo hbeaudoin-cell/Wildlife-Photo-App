@@ -558,6 +558,52 @@
     .photographer-stats strong { display: block; color: var(--green); font-size: 1.05rem; }
     .photographer-stats span { font-size: 0.72rem; color: #999; text-transform: uppercase; letter-spacing: 0.3px; }
 
+    /* ===== SIGN UP FORM ===== */
+    .signup-area {
+      max-width: 500px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      border: 1px solid #eee;
+    }
+
+    .signup-area h3 {
+      color: var(--green);
+      font-size: 1.1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .signup-password-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.3rem;
+    }
+
+    .signup-avatar-preview {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 2px solid var(--green-light);
+      object-fit: cover;
+      display: none;
+      margin-top: 0.5rem;
+    }
+
+    .signup-success {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .signup-success .checkmark {
+      font-size: 3rem;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .signup-success p { color: var(--green); font-weight: 600; font-size: 1.1rem; }
+
     /* ===== PROFILE MODAL ===== */
     .modal-overlay {
       display: none;
@@ -736,6 +782,7 @@
       <button class="active" data-section="gallery">Gallery</button>
       <button data-section="upload">Upload</button>
       <button data-section="photographers">Photographers</button>
+      <button data-section="signup">Sign Up</button>
     </nav>
   </div>
 </header>
@@ -806,6 +853,51 @@
   <section id="section-photographers" class="section">
     <h2 class="section-title">Meet the Photographers</h2>
     <div class="photographer-grid" id="photographer-grid"></div>
+  </section>
+
+  <!-- ============ SIGN UP SECTION ============ -->
+  <section id="section-signup" class="section">
+    <h2 class="section-title">Join the Community</h2>
+    <div class="signup-area">
+      <h3>Create Your Photographer Profile</h3>
+      <form id="signup-form">
+        <div class="form-group">
+          <label for="signup-name">Full Name</label>
+          <input type="text" id="signup-name" placeholder="e.g. Jane Goodall" required>
+        </div>
+        <div class="form-group">
+          <label for="signup-email">Email Address</label>
+          <input type="email" id="signup-email" placeholder="e.g. jane@wildlife.org" required>
+        </div>
+        <div class="form-group">
+          <label for="signup-password">Password</label>
+          <input type="password" id="signup-password" placeholder="Choose a strong password" required minlength="8">
+          <div class="signup-password-hint">Must be at least 8 characters</div>
+        </div>
+        <div class="form-group">
+          <label for="signup-confirm-password">Confirm Password</label>
+          <input type="password" id="signup-confirm-password" placeholder="Re-enter your password" required minlength="8">
+        </div>
+        <div class="form-group">
+          <label for="signup-location">Location</label>
+          <input type="text" id="signup-location" placeholder="e.g. Nairobi, Kenya">
+        </div>
+        <div class="form-group">
+          <label for="signup-bio">Bio</label>
+          <textarea id="signup-bio" placeholder="Tell us about your photography journey..."></textarea>
+        </div>
+        <div class="form-group">
+          <label for="signup-avatar">Avatar URL</label>
+          <input type="url" id="signup-avatar" placeholder="e.g. https://example.com/avatar.jpg">
+          <img class="signup-avatar-preview" id="signup-avatar-preview" alt="Avatar preview">
+        </div>
+        <button type="submit" class="submit-btn">Create Account</button>
+      </form>
+      <div class="signup-success" id="signup-success">
+        <span class="checkmark">&#10004;</span>
+        <p>Account created successfully!</p>
+      </div>
+    </div>
   </section>
 
 </div>
@@ -1430,6 +1522,47 @@ document.getElementById('upload-form').addEventListener('submit', (e) => {
     document.getElementById('upload-form').reset();
     dropzone.querySelector('.drop-text').textContent = 'Click or drag a photo here';
     uploadedFile = null;
+  }, 2000);
+});
+
+// ============================================================
+// SIGN UP FORM
+// ============================================================
+const signupAvatarInput = document.getElementById('signup-avatar');
+const signupAvatarPreview = document.getElementById('signup-avatar-preview');
+
+signupAvatarInput.addEventListener('input', () => {
+  const url = signupAvatarInput.value.trim();
+  if (url) {
+    signupAvatarPreview.src = url;
+    signupAvatarPreview.style.display = 'block';
+    signupAvatarPreview.onerror = () => { signupAvatarPreview.style.display = 'none'; };
+  } else {
+    signupAvatarPreview.style.display = 'none';
+  }
+});
+
+document.getElementById('signup-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const password = document.getElementById('signup-password').value;
+  const confirmPassword = document.getElementById('signup-confirm-password').value;
+
+  if (password !== confirmPassword) {
+    alert('Passwords do not match.');
+    return;
+  }
+
+  // Show success
+  document.getElementById('signup-form').style.display = 'none';
+  const success = document.getElementById('signup-success');
+  success.style.display = 'block';
+
+  setTimeout(() => {
+    success.style.display = 'none';
+    document.getElementById('signup-form').style.display = 'block';
+    document.getElementById('signup-form').reset();
+    signupAvatarPreview.style.display = 'none';
   }, 2000);
 });
 
