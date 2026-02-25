@@ -9,13 +9,17 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --green: #2e7d32;
-      --green-light: #4caf50;
-      --green-pale: #e8f5e9;
-      --green-bg: #f1f8e9;
+      --green: #1B4332;
+      --green-light: #2D6A4F;
+      --green-pale: #D8F3DC;
+      --green-bg: #F5FBF7;
+      --gold: #B7791F;
+      --gold-light: #D69E2E;
+      --gold-pale: #FEFCF3;
+      --amber: #92400E;
       --text-dark: #1a1a1a;
-      --text-muted: #777;
-      --danger: #e53935;
+      --text-muted: #6B7280;
+      --danger: #DC2626;
     }
 
     body {
@@ -69,7 +73,7 @@
       color: #fff;
     }
 
-    .logo h1 span { color: #c8e6c9; }
+    .logo h1 span { color: #D69E2E; }
 
     nav {
       display: flex;
@@ -134,7 +138,7 @@
     .hero-stats strong {
       display: block;
       font-size: 1.6rem;
-      color: var(--green);
+      color: var(--gold);
       font-weight: 700;
     }
 
@@ -185,7 +189,7 @@
       transition: all 0.2s;
     }
 
-    .filter-btn:hover { background: var(--green-pale); color: var(--green); border-color: #c8e6c9; }
+    .filter-btn:hover { background: var(--gold-pale); color: var(--gold); border-color: var(--gold-light); }
 
     .filter-btn.active {
       background: var(--green);
@@ -249,8 +253,8 @@
     .tag {
       font-size: 0.7rem;
       padding: 0.15rem 0.5rem;
-      background: var(--green-pale);
-      color: var(--green);
+      background: var(--gold-pale);
+      color: var(--amber);
       border-radius: 4px;
       font-weight: 500;
     }
@@ -327,7 +331,7 @@
 
     .comment-form input:focus {
       outline: none;
-      border-color: var(--green-light);
+      border-color: var(--gold-light);
     }
 
     .comment-form button {
@@ -341,7 +345,7 @@
       transition: background 0.2s;
     }
 
-    .comment-form button:hover { background: var(--green-light); }
+    .comment-form button:hover { background: var(--gold); }
 
     /* ===== UPLOAD FORM ===== */
     .upload-area {
@@ -388,7 +392,7 @@
     .form-group textarea:focus,
     .form-group select:focus {
       outline: none;
-      border-color: var(--green-light);
+      border-color: var(--gold-light);
       background: #fff;
     }
 
@@ -407,8 +411,8 @@
     }
 
     .dropzone:hover {
-      background: var(--green-pale);
-      border-color: var(--green-light);
+      background: var(--gold-pale);
+      border-color: var(--gold-light);
     }
 
     .dropzone .drop-icon { font-size: 2.2rem; margin-bottom: 0.5rem; display: block; }
@@ -464,7 +468,7 @@
       transition: background 0.2s;
     }
 
-    .submit-btn:hover { background: var(--green-light); }
+    .submit-btn:hover { background: var(--gold); }
 
     .upload-success {
       display: none;
@@ -553,7 +557,7 @@
     }
 
     .photographer-stats div { text-align: center; }
-    .photographer-stats strong { display: block; color: var(--green); font-size: 1.05rem; }
+    .photographer-stats strong { display: block; color: var(--gold); font-size: 1.05rem; }
     .photographer-stats span { font-size: 0.72rem; color: #999; text-transform: uppercase; letter-spacing: 0.3px; }
 
     /* ===== SIGN UP FORM ===== */
@@ -582,7 +586,7 @@
       width: 64px;
       height: 64px;
       border-radius: 50%;
-      border: 2px solid var(--green-light);
+      border: 2px solid var(--gold-light);
       object-fit: cover;
       display: none;
       margin-top: 0.5rem;
@@ -604,7 +608,7 @@
 
     /* ===== CONTEST ===== */
     .contest-banner {
-      background: linear-gradient(135deg, var(--green) 0%, #1b5e20 100%);
+      background: linear-gradient(135deg, var(--green) 0%, #0B2920 100%);
       border-radius: 12px;
       padding: 2rem;
       margin-bottom: 2rem;
@@ -678,7 +682,7 @@
     .contest-subtitle {
       font-size: 1.1rem;
       font-weight: 600;
-      color: var(--green);
+      color: var(--gold);
       margin-bottom: 0.4rem;
     }
 
@@ -714,7 +718,7 @@
 
     .picker-card:hover {
       transform: translateY(-2px);
-      border-color: var(--green-light);
+      border-color: var(--gold-light);
     }
 
     .picker-card.entered {
@@ -776,8 +780,8 @@
 
     .pick-slot.filled {
       border-style: solid;
-      border-color: var(--green-light);
-      background: var(--green-pale);
+      border-color: var(--gold-light);
+      background: var(--gold-pale);
     }
 
     .pick-slot[data-rank="1"].filled { border-color: #ffd700; background: #fffde7; }
@@ -787,7 +791,7 @@
     .pick-rank {
       font-weight: 700;
       font-size: 0.85rem;
-      color: var(--green);
+      color: var(--gold);
       min-width: 28px;
     }
 
@@ -907,7 +911,7 @@
       font-size: 2.5rem;
       display: block;
       margin-bottom: 0.3rem;
-      color: var(--green);
+      color: var(--gold);
     }
 
     .contest-vote-success p {
@@ -977,7 +981,7 @@
 
     .podium-info .podium-points {
       font-size: 0.8rem;
-      color: var(--green);
+      color: var(--gold);
       font-weight: 600;
     }
 
@@ -1022,7 +1026,7 @@
     .past-winner-info .past-theme {
       font-weight: 600;
       font-size: 0.9rem;
-      color: var(--green);
+      color: var(--gold);
       margin-bottom: 0.1rem;
     }
 
@@ -1113,7 +1117,7 @@
       height: 80px;
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid var(--green-pale);
+      border: 2px solid var(--gold-light);
     }
 
     .modal-profile-header .info h4 {
